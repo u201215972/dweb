@@ -1,0 +1,17 @@
+header {
+    background-color: #f40909; /* Cambia el color de fondo a tu preferencia */
+    height: 50px; /* Altura de la cabecera */
+    color: #fff; /* Color del texto */
+}
+  
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+  
+h1 {
+    margin: 0;
+}
+  
