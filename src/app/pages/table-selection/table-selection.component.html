@@ -1,5 +1,30 @@
 <p>table-selection works!</p>
 
-<button type="button" (click)="navegarAOrdenarPedido()" class="btn btn-danger">Danger</button>
+<div class="container">
+    <label>Selecciona una mesa : </label>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let table of silhouettes">
+        <div class="table-wrapper" (click)="selectTable(table)">
+            <img [src]="table.path" class="card-img-top" alt="Mi Imagen">
+            <div class="table-number">{{ table.number }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-panel">
+      <div class="info-box">
+        <div class="rojo"></div> Disponible
+      </div>
+      <div class="info-box">
+        <div class="gris"></div> Ocupado
+      </div>
+      <div class="info-box">
+        <div class="verde"></div> Seleccionado
+      </div>
+    </div>
+    <button class="btn btn-danger" (click)="obtenerNumeroSeleccionado()" [disabled] ="!selectedTable">Continuar</button>
+</div> 
+  
+
+
 
 

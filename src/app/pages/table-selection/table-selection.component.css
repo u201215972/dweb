@@ -1,0 +1,29 @@
+.table-wrapper {
+    position: relative;
+    display: inline-block;
+}
+  
+.table-number{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 50px;
+    color: white;
+}
+
+.rojo {
+    color: rgb(184, 25, 25);
+}
+  
+.gris {
+    color: grey;
+}
+
+.verde {
+    background-color: green;
+}
+
+  
