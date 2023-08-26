@@ -1,11 +1,11 @@
 footer {
     position: fixed;
     bottom: 0;
-    height: 30px;
+    height: 40px;
     width: 100%; /* Opcional, para ocupar todo el ancho */
-    background-color: #ad0909; /* Color de fondo de tu pie de página */
+    background-color: black;/*#ad0909Color de fondo de tu pie de página */
     color: #fff; /* Color del texto en el pie de página */
-    padding: 12px; /* Espaciado interno para el contenido del pie de página */
+    padding: 5px; /* Espaciado interno para el contenido del pie de página */
 }
  
 .footer-content {

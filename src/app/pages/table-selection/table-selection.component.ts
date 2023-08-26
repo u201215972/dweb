@@ -23,8 +23,8 @@ export class TableSelectionComponent {
     { number :3,path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
     { number :4,path: this.tableSilhouetteGray, color: 'gris',state:this.bussy,selected :false},
     { number :5,path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
-    { number :6,path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
-    { number :7,path: this.tableSilhouetteGray, color: 'gris',state:this.bussy,selected :false},
+    { number :6,path: this.tableSilhouetteGray, color: 'gris',state:this.bussy,selected :false},
+    { number :7,path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
     { number :8,path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
     { number :9,path: this.tableSilhouetteGray, color: 'gris',state:this.bussy,selected :false},
     { number :10,path: this.tableSilhouetteGray,color: 'rojo',state:this.bussy,selected :false},
@@ -33,10 +33,6 @@ export class TableSelectionComponent {
   ];
 
   constructor(private router: Router) {}
-
-  navegarAOrdenarPedido() : void  {
-    this.router.navigate(['/order']);
-  }
 
   selectTable(table :  {number: number;path: string;color: string;state: string;selected: boolean;}) : void {
     
@@ -49,15 +45,20 @@ export class TableSelectionComponent {
    
   }
 
-  obtenerNumeroSeleccionado() : void {
+  getSelectedNumber() : void {
 
     //this.silhouettes.some()
     const mesaSeleccionada = this.silhouettes.find(table => table.selected);
 
     if (mesaSeleccionada) {
-      alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
+      //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
+      this.navigateToOrder();
     }
 
+  }
+
+  navigateToOrder() : void  {
+    this.router.navigate(['/order']);
   }
 
 

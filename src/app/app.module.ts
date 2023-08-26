@@ -7,6 +7,8 @@ import { TableSelectionComponent } from './pages/table-selection/table-selection
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { OrderComponent } from './pages/order/order.component';
+import { FormsModule } from '@angular/forms';
+import { OrderStateComponent } from './pages/order-state/order-state.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { OrderComponent } from './pages/order/order.component';
     TableSelectionComponent,
     FooterComponent,
     HeaderComponent,
-    OrderComponent
+    OrderComponent,
+    OrderStateComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
