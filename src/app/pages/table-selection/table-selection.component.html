@@ -1,7 +1,8 @@
-<p>table-selection works!</p>
+<app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
 
 <div class="container">
-    <label>Selecciona una mesa : </label>
+  
+    <h3 style="padding-bottom: 20px; padding-top: 20px;" >Selecciona una mesa : </h3>
     <div class="row">
       <div class="col-md-3" *ngFor="let table of restaurant.tables">
         <div class="table-wrapper" (click)="selectTable(table)">
@@ -10,18 +11,16 @@
         </div>
       </div>
     </div>
-    <div class="info-panel">
-      <div class="info-box">
-        <div class="rojo"></div> Disponible
-      </div>
-      <div class="info-box">
-        <div class="gris"></div> Ocupado
-      </div>
-      <div class="info-box">
-        <div class="verde"></div> Seleccionado
-      </div>
+
+    <div class="row d-flex justify-content-center" style="padding-bottom:30px; padding-top: 30px;">
+      <span class="badge bg-danger" style="color: white; padding: 10px;margin-right: 10px;">Disponible</span>
+      <span class="badge bg-secondary" style="color: white; padding: 10px;margin-right: 10px;">Ocupado</span>
+      <span class="badge bg-success"style="color: white; padding: 10px;">Seleccionado</span>
     </div>
-    <button class="btn btn-danger" (click)="getSelectedNumber()" [disabled] ="!selectedTable">Continuar</button>
+    
+    <div class="text-sm-right">
+      <button class="btn btn-danger btn-lg" type="button" (click)="getSelectedNumber()" [disabled] ="!selectedTable">Continuar</button>
+    </div>
 </div> 
   
 

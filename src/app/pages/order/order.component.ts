@@ -14,6 +14,7 @@ export class OrderComponent {
   shoppingCart: Pizza[] = [];
   kitchen = new Kitchen();
   comments? : string;
+  showLoadingSpinner : boolean = false;
 
   constructor(private router: Router) {}
 
@@ -40,16 +41,24 @@ export class OrderComponent {
 
   sendOrder() : void
   {
-    const queryParams: any = {};
+    this.showLoadingSpinner = true;
 
-    queryParams.cart =  JSON.stringify(this.shoppingCart);
-    queryParams.comments = this.comments;
+    setTimeout(() => {
 
-    const navigationExtras: NavigationExtras = {
-      queryParams
-    };
+      const queryParams: any = {};
 
-    this.router.navigate(['/order/state'],navigationExtras);
+      queryParams.cart =  JSON.stringify(this.shoppingCart);
+      queryParams.comments = this.comments;
+  
+      const navigationExtras: NavigationExtras = {
+        queryParams
+      };
+  
+      this.router.navigate(['/order/state'],navigationExtras);
+
+    }, 5000); 
+
+
   }
 
 }

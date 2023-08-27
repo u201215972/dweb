@@ -13,6 +13,7 @@ import { OrderComponent } from './pages/order/order.component';
 import { FormsModule } from '@angular/forms';
 import { OrderStateComponent } from './pages/order-state/order-state.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoadingSpinnerComponent } from './util/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     HeaderComponent,
     OrderComponent,
-    OrderStateComponent
+    OrderStateComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

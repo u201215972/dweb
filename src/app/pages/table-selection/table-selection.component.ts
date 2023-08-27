@@ -12,6 +12,7 @@ import { Table } from 'src/app/models/table';
 export class TableSelectionComponent {
 
   selectedTable : boolean = false;
+  showLoadingSpinner : boolean = false;
 
   restaurant = new Restaurant();
 
@@ -36,7 +37,11 @@ export class TableSelectionComponent {
 
     if (mesaSeleccionada) {
       //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
-      this.navigateToOrder();
+      this.showLoadingSpinner = true;
+
+      setTimeout(() => {
+        this.navigateToOrder();
+      }, 5000); 
     }
 
   }

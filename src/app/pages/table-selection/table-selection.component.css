@@ -14,16 +14,14 @@
     color: white;
 }
 
-.rojo {
-    color: rgb(184, 25, 25);
-}
-  
-.gris {
-    color: grey;
+.circle-red {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    display: inline-block;
 }
 
-.verde {
-    color: green;
-}
+
 
   

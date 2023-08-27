@@ -1,29 +1,38 @@
-<p>order works!</p>
+<app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
 
 <div class="container">
 
-    <h2>Seleccione su pizza:</h2>
+    <h2 style="padding-top: 25px;">Seleccione su pizza:</h2>
 
-    <div class="row align-items-start" style="padding-top: 30px;">
+    <div class="row align-items-start" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="col" *ngFor="let pizza of kitchen.classic">
+          <div class="card" style="padding: 20px;">
+
             <h3>{{ pizza.name }}</h3>
-            <img [src] ="pizza.imagen" class="imagenPizza" >
+            <img [src] ="pizza.imagen" class="imagenPizza" style="align-self: center;" >
             <p>Precio: S/ {{ pizza.price | number : '1.2-2' }}</p>
             <label>Cantidad: <input type="number" [(ngModel)]="pizza.amount"></label>
             <label>Tamaño:
+
               <select [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
                 <option value="Personal">Personal</option>
                 <option value="Mediana">Mediana</option>
                 <option value="Grande">Grande</option>
                 <option value="Familiar">Familiar</option>
               </select>
+
             </label>
-            <button class="btnAddCart" (click)="addToCart(pizza)">Agregar al carrito</button>
+            <button type="button" class="btn btn-success" style="margin-top: 10px" (click)="addToCart(pizza)">Agregar al carrito</button>
+
+          </div>
           </div>
     </div>
 
     <div class="row align-items-start">
         <div class="col" *ngFor="let pizza of kitchen.specials">
+
+          <div  class="card" style="padding: 20px;">
+
             <h3>{{ pizza.name }}</h3>
             <img [src] ="pizza.imagen" class="imagenPizza" >
             <p>Precio: S/ {{  pizza.price | number : '1.2-2' }}</p>
@@ -36,13 +45,16 @@
                 <option value="Familiar">Familiar</option>
               </select>
             </label>
-            <button class="btnAddCart" (click)="addToCart(pizza)">Agregar al carrito</button>
+            <button type="button" class="btn btn-success" style="margin-top: 10px;" (click)="addToCart(pizza)">Agregar al carrito</button>
+
+          </div>
+
           </div>
     </div>
 
-    <div class="col-2" style="padding-bottom: 30px;" >
-        <label>Comentarios:</label>
-        <textarea [(ngModel)] = "comments" placeholder="Escríbenos si tienes comentarios..."></textarea>
+    <div class="col" style="padding-bottom: 30px;padding-top: 30px;" >
+        <h4>Comentarios:</h4>
+        <textarea style="width: 550px;" [(ngModel)] = "comments" placeholder="Escríbenos si tienes comentarios..."></textarea>
     </div>
 
   
@@ -51,9 +63,11 @@
     <div *ngFor="let pizza of shoppingCart" >
       {{ pizza.name }} - Cantidad: {{ pizza.amount }} - Tamaño: {{ pizza.size }}
     </div> 
-    <p style="padding-bottom: 20px;"  >Total: {{ calculateTotal() | number : '1.2-2' }}</p>
+    <p style="padding-bottom: 20px;"  >Total: S/ {{ calculateTotal() | number : '1.2-2' }}</p>
 
-    <button class="btn btn-danger" (click)="sendOrder()" [disabled]="!disabledSendOrder()" >Enviar Pedido</button>
+    <div class="text-sm-right">
+      <button class="btn btn-danger btn-lg" (click)="sendOrder()" [disabled]="!disabledSendOrder()" >Enviar Pedido</button>
+    </div>
 
 
 </div>
