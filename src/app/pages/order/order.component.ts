@@ -1,6 +1,5 @@
-import { query } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Kitchen } from 'src/app/models/kitchen';
 import { Pizza } from 'src/app/models/pizza.model';
 
@@ -14,7 +13,7 @@ export class OrderComponent {
   
   shoppingCart: Pizza[] = [];
   kitchen = new Kitchen();
-  comments : string = '';
+  comments? : string;
 
   constructor(private router: Router) {}
 
@@ -41,7 +40,16 @@ export class OrderComponent {
 
   sendOrder() : void
   {
-    this.router.navigate(['/order/state'],{ queryParams: { cart : this.shoppingCart ,comments: this.comments } });
+    const queryParams: any = {};
+
+    queryParams.cart =  JSON.stringify(this.shoppingCart);
+    queryParams.comments = this.comments;
+
+    const navigationExtras: NavigationExtras = {
+      queryParams
+    };
+
+    this.router.navigate(['/order/state'],navigationExtras);
   }
 
 }

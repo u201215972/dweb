@@ -3,7 +3,7 @@
 <div class="container">
     <label>Selecciona una mesa : </label>
     <div class="row">
-      <div class="col-md-3" *ngFor="let table of silhouettes">
+      <div class="col-md-3" *ngFor="let table of restaurant.tables">
         <div class="table-wrapper" (click)="selectTable(table)">
             <img [src]="table.path" class="card-img-top" alt="Mi Imagen">
             <div class="table-number">{{ table.number }}</div>
