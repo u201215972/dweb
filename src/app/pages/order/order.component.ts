@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Kitchen } from 'src/app/models/kitchen';
 import { Pizza } from 'src/app/models/pizza.model';
+import { Table } from 'src/app/models/table';
 
 @Component({
   selector: 'app-order',
@@ -15,16 +16,23 @@ export class OrderComponent {
   kitchen = new Kitchen();
   comments? : string;
   showLoadingSpinner : boolean = false;
+  numberTableSelected : number = 0;
+    
+  constructor(private router: Router,private route: ActivatedRoute) {}
 
-  constructor(private router: Router) {}
+  ngOnInit() {
+    this.numberTableSelected = Number.parseInt(this.route.snapshot.queryParamMap.get('numeroMesa') ?? '0') ;
+  }
 
   addToCart(pizza: Pizza) : void {
 
-    if (pizza.amount != 0) {
+    if (pizza.amount > 0) {
       this.shoppingCart.push(pizza);
     }
 
   }
+
+
 
   calculateTotal() : number {
     return this.shoppingCart.reduce((total, pizza) => total + pizza.price * pizza.amount, 0);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { Table } from 'src/app/models/table';
 
@@ -47,7 +47,18 @@ export class TableSelectionComponent {
   }
 
   navigateToOrder() : void  {
-    this.router.navigate(['/order']);
+
+    const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
+
+    const queryParams: any = {};
+    queryParams.numeroMesa = mesaSeleccionada!.number;
+
+    const navigationExtras: NavigationExtras = {
+      queryParams
+    };
+    
+    this.router.navigate(['/order'],navigationExtras);
+
   }
 
 

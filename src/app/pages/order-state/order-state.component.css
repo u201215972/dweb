@@ -113,6 +113,18 @@ body {
     margin-right: 15px;
 }
 
+.icon-cooking {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    animation: cooking 1s infinite;
+}
+
+@keyframes cooking {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(45deg); } 
+}
+
 .icon-content { 
     padding-bottom: 20px;
 }
