@@ -1,13 +1,20 @@
 <app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
 
-<div class="container">
+<div *ngIf="loadingTables" class="spinner">
+  <!-- Aquí coloca tu spinner, podría ser una animación CSS o una imagen de carga -->
+  <p>Cargando mesas...</p>
+</div>
+
+
+<div *ngIf="!loadingTables"  class="container">
   
     <h3 style="padding-bottom: 20px; padding-top: 20px;" >Selecciona una mesa : </h3>
     <div class="row">
-      <div class="col-md-3" *ngFor="let table of restaurant.tables">
+      <div class="col-md-3" style="padding-bottom: 20px;" *ngFor="let table of restaurant.tables">
         <div class="table-wrapper" (click)="selectTable(table)">
             <img [src]="table.path" class="card-img-top" alt="Mi Imagen">
             <div class="table-number">{{ table.number }}</div>
+            <p>N°personas : {{table.persons}}</p>
         </div>
       </div>
     </div>

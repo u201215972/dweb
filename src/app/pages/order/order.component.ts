@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Kitchen } from 'src/app/models/kitchen';
 import { Pizza } from 'src/app/models/pizza.model';
-import { Table } from 'src/app/models/table';
 
 @Component({
   selector: 'app-order',
@@ -32,8 +31,6 @@ export class OrderComponent {
 
   }
 
-
-
   calculateTotal() : number {
     return this.shoppingCart.reduce((total, pizza) => total + pizza.price * pizza.amount, 0);
   }
@@ -41,6 +38,15 @@ export class OrderComponent {
   disabledSendOrder() : boolean
   {
     return this.calculateTotal() > 0;
+  }
+
+  removeItem(pizza: Pizza) : void {
+
+    const indexPizza = this.shoppingCart.indexOf(pizza);
+    this.shoppingCart.splice(indexPizza,1);
+    //delete this.shoppingCart[indexPizza];
+    
+    console.log("Cantidad de items : " + this.shoppingCart.length);
   }
 
   updatedPrice(pizza: Pizza): void {

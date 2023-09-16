@@ -1,3 +1,4 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
 .imagenPizza
 {
@@ -10,4 +11,18 @@
 {
     margin-top: 20px;
     margin-bottom: 60px;
+}
+
+/* Estilos personalizados para el botón */
+.btn-cerrar {
+    background: none; /* Elimina el fondo */
+    border: none; /* Elimina el borde si lo hubiera */
+    color: gray; /* Cambia el color del icono a rojo o el color que desees */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 0; /* Elimina el espacio interior del botón */
+}
+
+/* Estilos para el icono (opcional) */
+.btn-cerrar .fas {
+    font-size: 24px; /* Cambia el tamaño del icono si es necesario */
 }

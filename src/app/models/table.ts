@@ -3,5 +3,6 @@ export interface Table {
     color: string;
     selected: boolean;
     number: number;
+    persons : number;
     state: string;
 }

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Restaurant } from 'src/app/models/restaurant';
 import { Table } from 'src/app/models/table';
+import { DePrizzaApiService } from 'src/app/services/de-prizza-api.service';
 
 @Component({
   selector: 'app-table-selection',
@@ -9,14 +10,35 @@ import { Table } from 'src/app/models/table';
   styleUrls: ['./table-selection.component.css']
 })
 
-export class TableSelectionComponent {
+export class TableSelectionComponent implements OnInit {
 
   selectedTable : boolean = false;
   showLoadingSpinner : boolean = false;
+  loadingTables : boolean = true;
+  users :any = [];
 
   restaurant = new Restaurant();
 
-  constructor(private router: Router) {}
+  constructor(  
+    private readonly dp: DePrizzaApiService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+
+    console.log("On init Table Selection");
+
+    setTimeout(() => {
+
+      this.dp.getUsers().subscribe((data: any) => {
+        this.users = data;
+        this.loadingTables = false;
+        console.log("Usuarios cargados :" + this.users);
+      })
+
+    }, 3000); 
+
+  }
 
   selectTable(table : Table) : void {
     

@@ -7,74 +7,68 @@
 
     <div class="row align-items-start" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="col" *ngFor="let pizza of kitchen.classic">
-          <div class="card" style="padding: 20px;">
-
+          <div class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>
             <img [src] ="pizza.imagen" class="imagenPizza" style="align-self: center;" >
             <p>Precio: S/ {{ pizza.price | number : '1.2-2' }}</p>
-            <label style="padding-bottom: 10px;" >Cantidad: <input type="number" [(ngModel)]="pizza.amount"></label>
-            <label>Tamaño:
-
-              <select [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
+            <!-- <label style="padding-bottom: 10px;" >Cantidad: <input type="number" [(ngModel)]="pizza.amount"></label> -->
+            <div class="row align-items-center">
+              <select style="height: 35px;margin-right: 5px;" [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
                 <option value="Personal">Personal</option>
                 <option value="Mediana">Mediana</option>
                 <option value="Grande">Grande</option>
                 <option value="Familiar">Familiar</option>
               </select>
-
-            </label>
-            <button type="button" class="btn btn-success" style="margin-top: 10px" (click)="addToCart(pizza)">Añadir</button>
-
+              <input style="width: 60px;height: 35px;" type="number" [(ngModel)]="pizza.amount">
+              <button style="margin-left: 5px;" type="button" class="btn btn-success" (click)="addToCart(pizza)">Añadir</button>
+            </div>
           </div>
-          </div>
+        </div>
     </div>
 
     <div class="row align-items-start">
         <div class="col" *ngFor="let pizza of kitchen.specials">
-
-          <div  class="card" style="padding: 20px;">
-
+          <div  class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>
             <img [src] ="pizza.imagen" class="imagenPizza" style="align-self: center;" >
             <p>Precio: S/ {{  pizza.price | number : '1.2-2' }}</p>
-            <label style="padding-bottom: 10px;" >Cantidad: <input type="number" [(ngModel)]="pizza.amount"></label>
-            <label>Tamaño:
-              <select [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
+            <div class="row align-items-center">
+              <select style="height: 35px;margin-right: 5px;" [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
                 <option value="Personal">Personal</option>
                 <option value="Mediana">Mediana</option>
                 <option value="Grande">Grande</option>
                 <option value="Familiar">Familiar</option>
               </select>
-            </label>
-            <button type="button" class="btn btn-success" style="margin-top: 10px;" (click)="addToCart(pizza)">Añadir</button>
-
+              <input style="width: 60px;height: 35px;" type="number" [(ngModel)]="pizza.amount">
+              <button style="margin-left: 5px;" type="button" class="btn btn-success" (click)="addToCart(pizza)">Añadir</button>
+            </div>
           </div>
-
-          </div>
+        </div>
     </div>
 
     <div style="padding-bottom: 30px;padding-top: 30px;" >
-        <h4 style="padding-bottom: 5px;">Comentarios:</h4>
+        <h4 style="padding-bottom: 5px;text-decoration: underline;">Comentarios:</h4>
         <textarea style="width: 550px; padding: 10px;" [(ngModel)] = "comments" placeholder="Escríbenos si tienes comentarios..."></textarea>
     </div>
 
   
-    <h2>Tu pedido:</h2>
+    <h3 style="text-decoration: underline;">TU PEDIDO:</h3>
 
     <hr *ngIf="shoppingCart.length > 0">
 
-    <div *ngFor="let pizza of shoppingCart" >
+    <div class="row justify-content-between" style="padding-right: 15px; padding-left: 15px;"  *ngFor="let pizza of shoppingCart" >
       {{ pizza.name }} - Cantidad: {{ pizza.amount }} - Tamaño: {{ pizza.size }}
+      <button class="btn-cerrar" (click)="removeItem(pizza)">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
     
-    <hr *ngIf="shoppingCart.length > 0">
-    
-    <p style="padding-top: 10px;">Total: S/ {{ calculateTotal() | number : '1.2-2' }}</p>
+    <hr>
+    <h4 style="padding-top: 10px;">TOTAL: s/ {{ calculateTotal() | number : '1.2-2' }}</h4>
 
     <div class="text-sm-right">
       <button class="btn btn-danger btn-lg" (click)="sendOrder()" [disabled]="!disabledSendOrder()">Enviar Pedido</button>
     </div>
 
-
 </div>
-  
+
