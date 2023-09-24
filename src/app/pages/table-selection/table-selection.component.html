@@ -1,10 +1,4 @@
-<app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
-
-<div *ngIf="loadingTables" class="spinner">
-  <!-- Aquí coloca tu spinner, podría ser una animación CSS o una imagen de carga -->
-  <p>Cargando mesas...</p>
-</div>
-
+<app-loading-spinner *ngIf="loadingTables"></app-loading-spinner>
 
 <div *ngIf="!loadingTables"  class="container">
   

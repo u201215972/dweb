@@ -20,8 +20,8 @@ export class Restaurant
       { number :8,persons : 1, path: this.tableSilhouetteRed, color: 'rojo',state:this.available,selected :false},
       { number :9,persons : 4, path: this.tableSilhouetteGray, color: 'gris',state:this.bussy,selected :false},
       { number :10,persons: 2,path: this.tableSilhouetteGray,color: 'rojo',state:this.bussy,selected :false},
-      /*{ number :11,persons: 6,path: this.tableSilhouetteRed,color: 'gris',state:this.available,selected :false},
-      { number :12,persons: 1,path: this.tableSilhouetteGray,color: 'gris',state:this.bussy,selected :false},*/
+      { number :11,persons: 6,path: this.tableSilhouetteRed,color: 'gris',state:this.available,selected :false},
+      { number :12,persons: 1,path: this.tableSilhouetteGray,color: 'gris',state:this.bussy,selected :false},
     ];
 
 }

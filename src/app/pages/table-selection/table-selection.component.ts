@@ -56,15 +56,15 @@ export class TableSelectionComponent implements OnInit {
 
     //this.silhouettes.some()
     const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
-
-    if (mesaSeleccionada) {
+    this.navigateToOrder();
+    /*if (mesaSeleccionada) {
       //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
       this.showLoadingSpinner = true;
 
       setTimeout(() => {
-        this.navigateToOrder();
+        
       }, 5000); 
-    }
+    }*/
 
   }
 

@@ -64,7 +64,7 @@
     </div>
     
     <hr>
-    <h4 style="padding-top: 10px;">TOTAL: s/ {{ calculateTotal() | number : '1.2-2' }}</h4>
+    <h4 style="padding-top: 10px;">TOTAL: S/ {{ calculateTotal() | number : '1.2-2' }}</h4>
 
     <div class="text-sm-right">
       <button class="btn btn-danger btn-lg" (click)="sendOrder()" [disabled]="!disabledSendOrder()">Enviar Pedido</button>

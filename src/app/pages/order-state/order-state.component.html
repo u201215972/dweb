@@ -15,9 +15,9 @@
             <div class="col-12">
             <ul id="progressbar" class="text-center">
                 <li class="active step0 col-4"></li>
-                <li class="active step0 col-4"></li>
+                <li class={{cookingState}}></li>
                 <!-- <li class="active step0"></li> -->
-                <li class="step0 col-4"></li>
+                <li class={{deliveredState}}></li>
             </ul>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="row d-flex icon-content">
-                <img class="icon-cooking" src="assets/img/icons/cooking.png">
+                <img class={{cookingClass}} src="assets/img/icons/cooking.png">
                 <div class="d-flex flex-column">
                     <p class="font-weight-bold">Preparando<br>Pizzas</p>
                 </div>

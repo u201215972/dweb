@@ -12,6 +12,10 @@ export class OrderStateComponent implements OnInit {
   shoppingCart: Pizza[] = [];
   comments : string = 'No hay comentarios';
 
+  cookingClass : string = "icon";
+  cookingState : string = "step0 col-4";
+  deliveredState : string = "step0 col-4";
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -25,13 +29,21 @@ export class OrderStateComponent implements OnInit {
     const array = this.route.snapshot.queryParamMap.get('cart');
     this.shoppingCart = JSON.parse(array!) as Pizza[];
 
-    console.log(this.comments);
+    //console.log(this.comments);
+     //console.log("Carrito de compra -> " + this.shoppingCart);
 
-    console.log("Carrito de compra -> " + this.shoppingCart);
-
-    this.shoppingCart.forEach(function(pizza){
+    /*this.shoppingCart.forEach(function(pizza){
       console.log("Nombre " + pizza.name);
-    });
+    });*/
+
+    setTimeout(() => {
+      this.cookingState = "active step0 col-4";
+      this.cookingClass = "icon-cooking"; 
+    }, 5000);
+
+    setTimeout(() => {
+      this.deliveredState = "active step0 col-4";
+    }, 10000);
     
   }
 
