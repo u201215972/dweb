@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Kitchen } from 'src/app/models/kitchen';
+import { Order } from 'src/app/models/order';
 import { Pizza } from 'src/app/models/pizza.model';
 import { DePrizzaApiService } from 'src/app/services/de-prizza-api.service';
 
@@ -16,7 +17,7 @@ export class OrderComponent {
   kitchen = new Kitchen();
   comments? : string;
   showLoadingSendOrder : boolean = false;
-  showLoadingProducts : boolean = false;
+  showLoadingProducts : boolean = true;
   numberTableSelected : number = 0;
   idTableSelected : string = '';
     
@@ -34,15 +35,18 @@ export class OrderComponent {
 
     setTimeout(() => {
 
-      this.dp.getProducts().subscribe((result: any) => {
+      this.dp.getMenu().subscribe((result: Kitchen) => {
         //this.users = data;
-        this.kitchen.classic = result.data.classic;
-        this.kitchen.specials = result.data.specials;
+        //this.kitchen.test = result;
+        this.kitchen.clasicas = result.clasicas;
+        this.kitchen.especial = result.especial;
   
         this.showLoadingProducts = false;
 
-        console.log("Pizzas clasicas :" + result.data.classic);
-        console.log("Pizzas especiales :" + result.data.specials);
+        console.log("Pizzas clasicas :" + result.clasicas);
+        console.log("Pizzas especiales :" + result.especial);
+
+        this.kitchen.setupPricesPizza();
       })
 
     }, 3000); 
@@ -76,41 +80,43 @@ export class OrderComponent {
   }
 
   updatedPrice(pizza: Pizza): void {
-    pizza.price = pizza.prices[pizza.size];
+
+    const sizeSelected = pizza.sizes.find(pizzaSize => pizzaSize.size == pizza.size);
+
+    if (sizeSelected) {
+      pizza.price = Number.parseFloat(sizeSelected.price);
+      pizza.idSizedSelected = sizeSelected.id;
+    }
+
   }
 
   sendOrder() : void
   {
     this.showLoadingSendOrder = true;
+    const orderBody = new Order(this.comments ?? '',this.idTableSelected,this.shoppingCart);
+    //const orderJson = JSON.stringify(orderBody);
+    //console.log("Order body : " + orderJson);
 
-    /*{
-      "pedidos": [
-        1,3,4,6
-      ],
-      "total" : 45.70
-      "comentarios": null,
-    }*/
+    setTimeout(() => {
 
+      this.dp.sendOrder(orderBody).subscribe((result: any) => {
 
-    /*this.dp.sendOrder().subscribe((result: any) => {
-
-    })*/
-
-    /*setTimeout(() => {
-
-      const queryParams: any = {};
-
-      queryParams.cart =  JSON.stringify(this.shoppingCart);
-      queryParams.comments = this.comments;
+        const queryParams: any = {};
+        const idOrder : string = result.code;
   
-      const navigationExtras: NavigationExtras = {
-        queryParams
-      };
+        queryParams.cart =  JSON.stringify(this.shoppingCart);
+        queryParams.comments = this.comments;
+        queryParams.idOrder = idOrder;
+    
+        const navigationExtras: NavigationExtras = {
+          queryParams
+        };
+    
+        this.router.navigate(['/order/state'],navigationExtras);
   
-      this.router.navigate(['/order/state'],navigationExtras);
+      })
 
-    }, 5000); */
-
+    }, 5000); 
 
   }
 

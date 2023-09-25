@@ -6,8 +6,8 @@ export class Restaurant
   tableSilhouetteGray : string = 'assets/img/silueta_mesa_gris.png';
   tableSilhouetteGreen : string = 'assets/img/silueta_mesa_verde.png';
 
-  available : string = 'available';
-  bussy : string = 'busy'
+  available : string = 'A';
+  bussy : string = 'B'
 
   tables : Table [] = [
     { id : "1" ,name :1,persons:2,path: this.tableSilhouetteRed, color: 'rojo',status:this.available,selected :false},

@@ -1,4 +1,5 @@
 <app-loading-spinner *ngIf="showLoadingSendOrder"></app-loading-spinner>
+<app-loading-spinner *ngIf="showLoadingProducts"></app-loading-spinner>
 
 <div *ngIf="!showLoadingProducts" class="container">
 
@@ -7,11 +8,12 @@
     <!-- <h3> Mesa seleccionada : {{idTableSelected}}  </h3> -->
 
     <div class="row align-items-start" style="padding-top: 30px; padding-bottom: 30px;">
-        <div class="col" *ngFor="let pizza of kitchen.classic">
+        <div class="col" *ngFor="let pizza of kitchen.clasicas">
           <div class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>
-            <img [src] ="pizza.imagen" class="imagenPizza" style="align-self: center;" >
+            <img [src] ="pizza.image" class="imagenPizza" style="align-self: center;" >
             <p>Precio: S/ {{ pizza.price | number : '1.2-2' }}</p>
+            <p> {{ pizza.description }}</p>
             <!-- <label style="padding-bottom: 10px;" >Cantidad: <input type="number" [(ngModel)]="pizza.amount"></label> -->
             <div class="row align-items-center">
               <select style="height: 35px;margin-right: 5px;" [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
@@ -20,7 +22,7 @@
                 <option value="Grande">Grande</option>
                 <option value="Familiar">Familiar</option>
               </select>
-              <input style="width: 60px;height: 35px;" type="number" [(ngModel)]="pizza.amount">
+              <input style="width: 60px;height: 35px;" placeholder="0" type="number" [(ngModel)]="pizza.amount">
               <button style="margin-left: 5px;" type="button" class="btn btn-success" (click)="addToCart(pizza)">Añadir</button>
             </div>
           </div>
@@ -28,11 +30,12 @@
     </div>
 
     <div class="row align-items-start">
-        <div class="col" *ngFor="let pizza of kitchen.specials">
+        <div class="col" *ngFor="let pizza of kitchen.especial">
           <div  class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>
-            <img [src] ="pizza.imagen" class="imagenPizza" style="align-self: center;" >
+            <img [src] ="pizza.image" class="imagenPizza" style="align-self: center;" >
             <p>Precio: S/ {{  pizza.price | number : '1.2-2' }}</p>
+            <p> {{ pizza.description }}</p>
             <div class="row align-items-center">
               <select style="height: 35px;margin-right: 5px;" [(ngModel)]="pizza.size" (change)="updatedPrice(pizza)">
                 <option value="Personal">Personal</option>
@@ -40,7 +43,7 @@
                 <option value="Grande">Grande</option>
                 <option value="Familiar">Familiar</option>
               </select>
-              <input style="width: 60px;height: 35px;" type="number" [(ngModel)]="pizza.amount">
+              <input style="width: 60px;height: 35px;" placeholder="0" type="number" [(ngModel)]="pizza.amount">
               <button style="margin-left: 5px;" type="button" class="btn btn-success" (click)="addToCart(pizza)">Añadir</button>
             </div>
           </div>

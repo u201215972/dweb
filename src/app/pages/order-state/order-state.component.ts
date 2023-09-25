@@ -12,6 +12,12 @@ export class OrderStateComponent implements OnInit {
 
   shoppingCart: Pizza[] = [];
   comments : string = 'No hay comentarios';
+  idOrder : string = '985SROZNGE';
+  statusOrder : string = 'NEW';
+
+  statusDone : string = 'DONE';
+  statusPreparing : string = 'PREPARING';
+  statusCanceled : string = 'CANCELED';
 
   cookingClass : string = "icon";
   cookingState : string = "step0 col-4";
@@ -24,31 +30,80 @@ export class OrderStateComponent implements OnInit {
 
   ngOnInit() {
 
-    /*this.route.queryParams.subscribe(params => {
-      this.comments = params['comments'];
-      console.log(this.comments);
-    });*/
     this.comments = this.route.snapshot.queryParamMap.get('comments') ?? 'No hay comentarios';
+    //this.idOrder = this.route.snapshot.queryParamMap.get('idOrder') ?? '';
 
     const array = this.route.snapshot.queryParamMap.get('cart');
     this.shoppingCart = JSON.parse(array!) as Pizza[];
 
-    //console.log(this.comments);
+    console.log(this.comments);
+    console.log(this.idOrder);
      //console.log("Carrito de compra -> " + this.shoppingCart);
 
     /*this.shoppingCart.forEach(function(pizza){
       console.log("Nombre " + pizza.name);
     });*/
 
-    setTimeout(() => {
+    /*setTimeout(() => {
       this.cookingState = "active step0 col-4";
       this.cookingClass = "icon-cooking"; 
     }, 5000);
 
     setTimeout(() => {
       this.deliveredState = "active step0 col-4";
+    }, 10000);*/
+
+    //this.checkStatusOrder();
+  }
+
+  calculateTotal() : number {
+    return this.shoppingCart.reduce((total, pizza) => total + pizza.price * pizza.amount, 0);
+  }
+
+  checkStatusOrder() : void 
+  {
+    if (this.statusOrder == this.statusDone || this.statusOrder == this.statusCanceled) {
+      return;
+    }
+
+
+    setTimeout(() => {
+      
+      this.dp.checkStatusOrder(this.idOrder).subscribe((result: any) => {
+
+        const orderJson = JSON.stringify(result);
+        console.log(orderJson);
+
+        const statusOrderResponse : string = result.status;
+        this.statusOrder = statusOrderResponse;
+
+        console.log("Estado pedido actual "+this.statusOrder);
+
+        switch (this.statusOrder) {
+          case this.statusPreparing:
+
+            this.cookingState = "active step0 col-4";
+            this.cookingClass = "icon-cooking";
+
+            break;
+          case this.statusDone:
+
+            this.deliveredState = "active step0 col-4";
+            break;
+
+          case this.statusCanceled:
+            alert('El restaurante canceló tu pedido.')
+            break;
+
+          default:
+            break;
+        }
+
+        this.checkStatusOrder();
+      });
+
     }, 10000);
-    
+
   }
 
 }

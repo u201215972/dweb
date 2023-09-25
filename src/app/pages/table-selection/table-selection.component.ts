@@ -29,14 +29,19 @@ export class TableSelectionComponent implements OnInit {
     console.log("On init Table Selection");
 
     setTimeout(() => {
-
       this.dp.getTables().subscribe((data: any) => {
-        //this.users = data;
-        this.restaurant.tables = data;
-        this.loadingTables = false;
-        this.restaurant.setImageTable();
-
+      
+        if (Array.isArray(data)) {
+          this.restaurant.tables = data;
+          this.loadingTables = false;
+          this.restaurant.setImageTable();
+          console.log('Si es un array 😄')
+        } else {
+          alert('Ocurrió un error.Por favor, inténtelo de nuevo.')
+        }
+        
         console.log("Mesas cargadas :" + data);
+        
       })
 
     }, 3000); 
@@ -58,16 +63,17 @@ export class TableSelectionComponent implements OnInit {
   getSelectedNumber() : void {
 
     //this.silhouettes.some()
-    //const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
-    this.navigateToOrder();
-    /*if (mesaSeleccionada) {
-      //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
-      this.showLoadingSpinner = true;
+    const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
 
-      setTimeout(() => {
+    if (mesaSeleccionada) {
+      //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
+      //this.showLoadingSpinner = true;
+      this.navigateToOrder();
+
+      /*setTimeout(() => {
         
-      }, 5000); 
-    }*/
+      }, 5000); */
+    }
 
   }
 
