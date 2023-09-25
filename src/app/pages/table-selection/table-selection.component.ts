@@ -30,10 +30,13 @@ export class TableSelectionComponent implements OnInit {
 
     setTimeout(() => {
 
-      this.dp.getUsers().subscribe((data: any) => {
-        this.users = data;
+      this.dp.getTables().subscribe((data: any) => {
+        //this.users = data;
+        this.restaurant.tables = data;
         this.loadingTables = false;
-        console.log("Usuarios cargados :" + this.users);
+        this.restaurant.setImageTable();
+
+        console.log("Mesas cargadas :" + data);
       })
 
     }, 3000); 
@@ -42,7 +45,7 @@ export class TableSelectionComponent implements OnInit {
 
   selectTable(table : Table) : void {
     
-    if(table.state == this.restaurant.available)
+    if(table.status == this.restaurant.available)
     {
       //this.restaurant.tables.forEach(function (table){ table.selected = false; });
       table.selected = !table.selected;
@@ -55,7 +58,7 @@ export class TableSelectionComponent implements OnInit {
   getSelectedNumber() : void {
 
     //this.silhouettes.some()
-    const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
+    //const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
     this.navigateToOrder();
     /*if (mesaSeleccionada) {
       //alert(`Número de mesa seleccionada: ${mesaSeleccionada.number}`);
@@ -73,7 +76,8 @@ export class TableSelectionComponent implements OnInit {
     const mesaSeleccionada = this.restaurant.tables.find(table => table.selected);
 
     const queryParams: any = {};
-    queryParams.numeroMesa = mesaSeleccionada!.number;
+    queryParams.numeroMesa = mesaSeleccionada!.name;
+    queryParams.idMesa = mesaSeleccionada!.id;
 
     const navigationExtras: NavigationExtras = {
       queryParams

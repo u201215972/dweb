@@ -1,9 +1,10 @@
-<app-loading-spinner *ngIf="showLoadingSpinner"></app-loading-spinner>
+<app-loading-spinner *ngIf="showLoadingSendOrder"></app-loading-spinner>
 
-<div class="container">
+<div *ngIf="!showLoadingProducts" class="container">
 
     <h2 style="padding-top: 25px;">Seleccione su pizza:</h2>
     <h5> Mesa seleccionada : {{numberTableSelected}}  </h5>
+    <!-- <h3> Mesa seleccionada : {{idTableSelected}}  </h3> -->
 
     <div class="row align-items-start" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="col" *ngFor="let pizza of kitchen.classic">

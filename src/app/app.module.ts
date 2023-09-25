@@ -25,7 +25,7 @@ import { LoadingSpinnerComponent } from './util/loading-spinner/loading-spinner.
     HeaderComponent,
     OrderComponent,
     OrderStateComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

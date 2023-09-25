@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Kitchen } from 'src/app/models/kitchen';
 import { Pizza } from 'src/app/models/pizza.model';
+import { DePrizzaApiService } from 'src/app/services/de-prizza-api.service';
 
 @Component({
   selector: 'app-order',
@@ -14,13 +15,38 @@ export class OrderComponent {
   shoppingCart: Pizza[] = [];
   kitchen = new Kitchen();
   comments? : string;
-  showLoadingSpinner : boolean = false;
+  showLoadingSendOrder : boolean = false;
+  showLoadingProducts : boolean = false;
   numberTableSelected : number = 0;
+  idTableSelected : string = '';
     
-  constructor(private router: Router,private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private readonly dp: DePrizzaApiService
+  ) 
+  {}
 
   ngOnInit() {
-    this.numberTableSelected = Number.parseInt(this.route.snapshot.queryParamMap.get('numeroMesa') ?? '0') ;
+
+    this.numberTableSelected = Number.parseInt(this.route.snapshot.queryParamMap.get('numeroMesa') ?? '0');
+    this.idTableSelected = this.route.snapshot.queryParamMap.get('idMesa') ?? '0';
+
+    setTimeout(() => {
+
+      this.dp.getProducts().subscribe((result: any) => {
+        //this.users = data;
+        this.kitchen.classic = result.data.classic;
+        this.kitchen.specials = result.data.specials;
+  
+        this.showLoadingProducts = false;
+
+        console.log("Pizzas clasicas :" + result.data.classic);
+        console.log("Pizzas especiales :" + result.data.specials);
+      })
+
+    }, 3000); 
+    
   }
 
   addToCart(pizza: Pizza) : void {
@@ -55,9 +81,22 @@ export class OrderComponent {
 
   sendOrder() : void
   {
-    this.showLoadingSpinner = true;
+    this.showLoadingSendOrder = true;
 
-    setTimeout(() => {
+    /*{
+      "pedidos": [
+        1,3,4,6
+      ],
+      "total" : 45.70
+      "comentarios": null,
+    }*/
+
+
+    /*this.dp.sendOrder().subscribe((result: any) => {
+
+    })*/
+
+    /*setTimeout(() => {
 
       const queryParams: any = {};
 
@@ -70,7 +109,7 @@ export class OrderComponent {
   
       this.router.navigate(['/order/state'],navigationExtras);
 
-    }, 5000); 
+    }, 5000); */
 
 
   }

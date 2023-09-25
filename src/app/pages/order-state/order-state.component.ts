@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pizza } from 'src/app/models/pizza.model';
+import { DePrizzaApiService } from 'src/app/services/de-prizza-api.service';
 
 @Component({
   selector: 'app-order-state',
@@ -16,7 +17,10 @@ export class OrderStateComponent implements OnInit {
   cookingState : string = "step0 col-4";
   deliveredState : string = "step0 col-4";
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private readonly dp: DePrizzaApiService
+  ) {}
 
   ngOnInit() {
 

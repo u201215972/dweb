@@ -7,8 +7,8 @@
       <div class="col-md-3" style="padding-bottom: 20px;" *ngFor="let table of restaurant.tables">
         <div class="table-wrapper" (click)="selectTable(table)">
             <img [src]="table.path" class="card-img-top" alt="Mi Imagen">
-            <div class="table-number">{{ table.number }}</div>
-            <p>N°personas : {{table.persons}}</p>
+            <div class="table-number">{{ table.name }}</div>
+            <!-- <p>N°personas : {{table.persons}}</p> -->
         </div>
       </div>
     </div>

@@ -1,8 +1,9 @@
 export interface Table {
+    id:string
     path: string;
     color: string;
     selected: boolean;
-    number: number;
+    name: number;
     persons : number;
-    state: string;
+    status: string;
 }
