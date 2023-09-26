@@ -13,6 +13,7 @@ export class OrderStateComponent implements OnInit {
   shoppingCart: Pizza[] = [];
   comments : string = 'No hay comentarios';
   idOrder : string = '985SROZNGE';
+  estimadedDelivery : string = '9:00 pm';
   statusOrder : string = 'NEW';
 
   statusDone : string = 'DONE';
@@ -31,7 +32,8 @@ export class OrderStateComponent implements OnInit {
   ngOnInit() {
 
     this.comments = this.route.snapshot.queryParamMap.get('comments') ?? 'No hay comentarios';
-    //this.idOrder = this.route.snapshot.queryParamMap.get('idOrder') ?? '';
+    this.idOrder = this.route.snapshot.queryParamMap.get('idOrder') ?? '';
+    this.estimadedDelivery = this.route.snapshot.queryParamMap.get('estimadedDelivery') ?? '';
 
     const array = this.route.snapshot.queryParamMap.get('cart');
     this.shoppingCart = JSON.parse(array!) as Pizza[];
@@ -53,7 +55,7 @@ export class OrderStateComponent implements OnInit {
       this.deliveredState = "active step0 col-4";
     }, 10000);*/
 
-    //this.checkStatusOrder();
+    this.checkStatusOrder();
   }
 
   calculateTotal() : number {

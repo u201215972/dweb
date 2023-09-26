@@ -1,13 +1,13 @@
 <app-loading-spinner *ngIf="showLoadingSendOrder"></app-loading-spinner>
 <app-loading-spinner *ngIf="showLoadingProducts"></app-loading-spinner>
 
-<div *ngIf="!showLoadingProducts" class="container">
+<div *ngIf="!showLoadingProducts" style="padding: 50px;">
 
     <h2 style="padding-top: 25px;">Seleccione su pizza:</h2>
     <h5> Mesa seleccionada : {{numberTableSelected}}  </h5>
     <!-- <h3> Mesa seleccionada : {{idTableSelected}}  </h3> -->
 
-    <div class="row align-items-start" style="padding-top: 30px; padding-bottom: 30px;">
+    <div class="pizzas-row" style="padding-top: 30px; padding-bottom: 30px;">
         <div class="col" *ngFor="let pizza of kitchen.clasicas">
           <div class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row align-items-start">
+    <div class="pizzas-row">
         <div class="col" *ngFor="let pizza of kitchen.especial">
           <div  class="card" style="padding: 20px;align-items: center;">
             <h3>{{ pizza.name }}</h3>

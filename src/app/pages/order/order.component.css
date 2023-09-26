@@ -1,5 +1,12 @@
 @import "~@fortawesome/fontawesome-free/css/all.css";
 
+
+.pizzas-row {
+    display: flex; /* Utiliza flexbox para alinear los elementos en una fila */
+    flex-wrap: nowrap; /* Evita que los elementos se ajusten a nuevas líneas */
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si es necesario */
+}
+
 .imagenPizza
 {
     height: 150px;

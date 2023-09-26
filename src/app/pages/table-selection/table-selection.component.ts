@@ -35,7 +35,10 @@ export class TableSelectionComponent implements OnInit {
           this.restaurant.tables = data;
           this.loadingTables = false;
           this.restaurant.setImageTable();
-          console.log('Si es un array 😄')
+
+          const tablesJson = JSON.stringify(data);
+          console.log(tablesJson);
+  
         } else {
           alert('Ocurrió un error.Por favor, inténtelo de nuevo.')
         }

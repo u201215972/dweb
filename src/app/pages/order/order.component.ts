@@ -94,6 +94,7 @@ export class OrderComponent {
   {
     this.showLoadingSendOrder = true;
     const orderBody = new Order(this.comments ?? '',this.idTableSelected,this.shoppingCart);
+
     //const orderJson = JSON.stringify(orderBody);
     //console.log("Order body : " + orderJson);
 
@@ -101,12 +102,17 @@ export class OrderComponent {
 
       this.dp.sendOrder(orderBody).subscribe((result: any) => {
 
+        const orderJson = JSON.stringify(result);
+        console.log(orderJson);
+
         const queryParams: any = {};
-        const idOrder : string = result.code;
+        const idOrder : string = result.order_code;
+        const estimadedDelivery : string = result.eta_of_delivery;
   
         queryParams.cart =  JSON.stringify(this.shoppingCart);
         queryParams.comments = this.comments;
         queryParams.idOrder = idOrder;
+        queryParams.estimadedDelivery = estimadedDelivery;
     
         const navigationExtras: NavigationExtras = {
           queryParams
@@ -116,7 +122,8 @@ export class OrderComponent {
   
       })
 
-    }, 5000); 
+    }, 3000); 
+
 
   }
 
