@@ -77,6 +77,7 @@ export class OrderStateComponent implements OnInit {
         console.log(orderJson);
 
         const statusOrderResponse : string = result.status;
+        this.estimadedDelivery = result.eta_of_delivery;
         this.statusOrder = statusOrderResponse;
 
         console.log("Estado pedido actual "+this.statusOrder);
